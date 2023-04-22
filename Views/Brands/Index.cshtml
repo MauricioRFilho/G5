@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WebMvcMysql.Models.Brand>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center container">
+    <div class="header register-brand">
+        <h3 class="title">Dados Mestres</h3>
+        <div class="sub-title">
+            :: Cadastro de Marcas ::
+        </div>
+        <div class="form-filter">
+            <div class="first-form">
+                <label for="national">Nacional</label>
+                <select name="natrional" id="national">
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
+            </div>
+            <div class="flex-form">
+                <div>
+                    <label for="brand">Marca</label>
+                    <input type="text" name="brand" id="brand">
+                </div>
+                <div>
+                    <label for="status"> Sta.Ativo </label>
+                    <input type="checkbox" name="status" id="status">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="body-container">
+        <div class="top-body">
+            <input type="button" id="consulta" value="Consulta">
+            <a asp-action="Create"><input type="button" asp-action="Create" value="Novo"></a>
+        </div>
+        <div class="list-brands">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nome da Marca</th>
+                        <th>Nacional</th>
+                        <th>Status</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrandName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.National)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

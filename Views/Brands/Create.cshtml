@@ -1,0 +1,85 @@
+﻿@model WebMvcMysql.Models.Brand
+
+@{
+    ViewData["Title"] = "Create";
+    ViewData["User"] = ViewBag.User;
+    ViewData["Logs"] = ViewBag.Log;
+}
+
+
+<div class="header register-brand">
+    <h3 class="title">Dados Mestres</h3>
+    <div class="sub-title">
+        :: Cadastro de Marcas ::
+    </div>
+    <div class="form-filter-register">
+        <form asp-action="Create">
+            <div class="container-edit">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="National" class="control-label"></label>
+                    <select class="form-select-input" asp-for="National">
+                        @Html.DisplayNameFor(model => model.National)
+                        <option value="true" selected>Sim</option>
+                        <option value="false">Não</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BrandName" class="control-label">
+                    <input asp-for="BrandName" class="form-control" />
+                    <span asp-validation-for="BrandName" class="text-danger"></span>
+                    </label>
+                </div>
+
+                <div class="form-group form-invert">
+                    <label asp-for="Status" class="control-label">
+                        <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+            </div>
+            <div class="bottom-edit">
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input type="button" value="Cancelar" onclick="backIndex()" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BrandName" class="control-label"></label>
+                <input asp-for="BrandName" class="form-control" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="National" /> @Html.DisplayNameFor(model => model.National)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+-->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
